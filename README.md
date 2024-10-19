@@ -1,5 +1,31 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This project is a test task built with Vue 3, TypeScript, and TailwindCSS. It demonstrates modern frontend development practices using Vue Router and other essential tools.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Requirements
+Node.js (version 16 or higher)
+NPM or Yarn package manager
+
+Installation
+1. Clone the repository:
+   git clone <repository-url>
+2. Navigate to the project directory:
+   cd <project-directory>
+3. Install dependencies:
+   npm install
+
+Running the Project
+To start the development server, run:
+npm run dev
+
+The app will be running locally on http://localhost:3000.
+
+Technologies Used
+Vue 3: The progressive JavaScript framework.
+TypeScript: Typed JavaScript for better development experience.
+Vue Router 4: For handling routing and navigation between pages.
+TailwindCSS: Utility-first CSS framework for rapid UI development.
+
+Key Features
+No state management library used (such as Vuex or Pinia).
+Modern Vue 3 composition API with TypeScript support.
