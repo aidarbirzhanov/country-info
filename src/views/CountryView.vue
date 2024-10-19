@@ -2,22 +2,14 @@
 import { useRoute } from 'vue-router'
 import * as axios from 'axios'
 import { ref } from 'vue'
+import {Country, Holiday} from '@/types.ts'
 
 const route = useRoute()
-
-interface Country {
-  officialName: string
-}
-
-interface Holidays {
-  name: string
-  date: string
-}
 
 const currentYear = new Date().getFullYear()
 
 const country = ref<Country | null>(null)
-const holidays = ref<Holidays[]>([])
+const holidays = ref<Holiday[]>([])
 const selectedYear = ref<number>(currentYear)
 const pending = ref()
 
@@ -40,7 +32,7 @@ const getCountryHolidays = async (year: number) => {
     const response = await axios.default.get(
       `${import.meta.env.VITE_BASE_URL}/PublicHolidays/${year}/${route.params.id}`
     )
-    holidays.value = response.data as Holidays[]
+    holidays.value = response.data as Holiday[]
   } catch (e) {
     console.error(e)
   } finally {
@@ -54,22 +46,25 @@ getCountryHolidays(selectedYear.value)
 
 <template>
   <section class="container mx-auto pt-10">
-    <p v-if="country">
-      {{ country.officialName }}
+    <p>
+      {{ country ? country.officialName : 'Loading...' }}
     </p>
 
-    <div v-if="holidays" class="h-[600px] overflow-y-auto w-max mb-10">
-      <div
-        v-for="(holiday, index) of holidays"
-        :key="index"
-        class="block bg-white border text-black p-4 mb-4 w-[300px]"
-      >
-        <p>{{ holiday.name }}</p>
-        <p>
-          <span v-if="holiday.date && !pending">{{ holiday.date }}</span>
-          <span v-else>Loading...</span>
-        </p>
+    <div>
+      <div v-if="holidays.length" class="h-[600px] overflow-y-auto w-max mb-10">
+        <div
+          v-for="(holiday, index) of holidays"
+          :key="index"
+          class="block bg-white border text-black p-4 mb-4 w-[300px]"
+        >
+          <p>{{ holiday.name }}</p>
+          <p>
+            <span v-if="holiday.date && !pending">{{ holiday.date }}</span>
+            <span v-else>Loading...</span>
+          </p>
+        </div>
       </div>
+      <span v-else>Loading...</span>
     </div>
 
     <div v-for="year in years" :key="year" class="inline-block mx-2">

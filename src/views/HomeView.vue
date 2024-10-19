@@ -2,11 +2,7 @@
 import { computed, ref } from 'vue'
 import * as axios from 'axios'
 import RandomCountryWidget from '@/components/RandomCountryWidget.vue'
-
-interface Country {
-  countryCode: string
-  name: string
-}
+import {Country} from '@/types.ts'
 
 const searchInput = ref<string>('')
 const countries = ref<Country[]>([])

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as axios from 'axios'
 import { ref } from 'vue'
+import {Holiday} from '@/types.ts'
 
 interface Props {
   country: {
@@ -10,11 +11,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
-interface Holiday {
-  date: string
-  name: string
-}
 
 const holidays = ref<Holiday[] | null>(null)
 
